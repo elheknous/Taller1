@@ -1,0 +1,1 @@
+En el contexto del problema se realizara la solucion con el uso de matrices donde se guardaran los alumnos y sus respectivas notas, se utilizaran metodos para el desarrollo de las problematicas y buenas practicas
