@@ -19,21 +19,106 @@ public class Principal {
             case 1:
                 estudiantes = agregarEstudiante(estudiantes);
                 imprimirMatriz(estudiantes);
+                menu(estudiantes);
                 break;
             case 2:
+                quienAprobo(estudiantes);
+                menu(estudiantes);
                 break;
             case 3:
+                reprobaron(estudiantes);
+                menu(estudiantes);
                 break;
             case 4:
-
+                examen(estudiantes);
                 break;
             case 5:
+                mostrarTodo(estudiantes);
                 break;
             case 6:
                 System.out.println("Hasta la proxima");
                 break;
 
         }
+    }
+
+    private static void examen(double[][] estudiantes) {
+        int examen = 0;
+        double promedio = 0.0;
+
+        for (int i = 0; i < 50; i++) {
+            if (estudiantes[i][0] != 0){
+                promedio = promedioPonderado(estudiantes,i);
+                if (promedio >= 3.6 && promedio <4) {
+                    examen++;
+                }
+            }
+
+        }
+        System.out.println("Examen: "+ examen);
+    }
+
+    private static void reprobaron(double[][] estudiantes) {
+        int reprobaron = 0;
+        double promedio = 0.0;
+
+        for (int i = 0; i < 50; i++) {
+            if (estudiantes[i][0] != 0){
+                promedio = promedioPonderado(estudiantes,i);
+                if (promedio < 3.6) {
+                    reprobaron++;
+                }
+            }
+
+        }
+        System.out.println("Reprobaron: "+ reprobaron);
+    }
+
+
+    private static void mostrarTodo(double[][] estudiantes) {
+        double prom = 0.0;
+        for (int i = 0; i < 50; i++) {
+            if (estudiantes[i][0] != 0){
+                System.out.print("Notas: ");
+                System.out.println(" "+estudiantes[i][0]+" "+estudiantes[i][1]+" "+estudiantes[i][2]+" "+estudiantes[i][3]+" "+estudiantes[i][4]);
+                System.out.println("Promedio: "+promedioPonderado(estudiantes,i));
+            }
+
+
+        }
+    }
+
+
+
+    private static void quienAprobo(double[][] estudiantes) {
+        int aprobaron = 0;
+        double promedio = 0.0;
+
+        for (int i = 0; i < 50; i++) {
+            if (estudiantes[i][0] != 0){
+                promedio = promedioPonderado(estudiantes,i);
+                if (promedio >= 4.0) {
+                    aprobaron++;
+                }
+            }
+
+        }
+        System.out.println("Aprobados: "+ aprobaron);
+    }
+
+    private static double promedioPonderado(double[][] estudiantes, int i){
+        double ponderacion1 = estudiantes[i][0] * 0.25;
+        double ponderacion2 = estudiantes[i][1] * 0.25;
+        double ponderacion3 = estudiantes[i][2] * 0.25;
+        double ponderacion4 = estudiantes[i][3] * 0.15;
+        double ponderacion5 = estudiantes[i][4] * 0.10;
+
+        double promedio = ponderacion1 + ponderacion2 +ponderacion3 + ponderacion4 + ponderacion5;
+
+        return promedio;
+
+
+
     }
 
     private static double[][] agregarEstudiante(double[][] estudiantes) {
@@ -48,9 +133,12 @@ public class Principal {
     }
 
     private static double[][] agregarNotas(double[][] estudiantes, int i) {
-        double nota = Math.random()*(7-1+1)+1;
+        double nota = 0;
         for (int j = 0; j < 5; j++) {
-            estudiantes[i][j] = Math.random()*(7-1+1)+1;
+            do {
+                nota = Math.random()*(7-1+1)+1;
+            }while (nota > 7);
+            estudiantes[i][j] = nota;
 
         }
         return estudiantes;
