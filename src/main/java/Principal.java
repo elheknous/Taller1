@@ -17,23 +17,51 @@ public class Principal {
         int opcion = sc.nextInt();
         switch (opcion){
             case 1:
-                estudiantes = agregarEstudiante(estudiantes);
-                imprimirMatriz(estudiantes);
-                menu(estudiantes);
+                if (estudiantes[49][0] == 0) {
+                    estudiantes = agregarEstudiante(estudiantes);
+                    imprimirMatriz(estudiantes);
+                    menu(estudiantes);
+                }else {
+                    System.out.println("Cantidad de alumnos maxima, no se puede añadir mas");
+                    menu(estudiantes);
+                }
                 break;
             case 2:
-                quienAprobo(estudiantes);
-                menu(estudiantes);
+                if (estudiantes[0][0] != 0) {
+                    quienAprobo(estudiantes);
+                    menu(estudiantes);
+                }else {
+                    System.out.println("Lo sentimos, no hay estudiantes para realizar la operacion");
+                    menu(estudiantes);
+                }
                 break;
             case 3:
-                reprobaron(estudiantes);
-                menu(estudiantes);
+                if (estudiantes[0][0] != 0) {
+                    reprobaron(estudiantes);
+                    menu(estudiantes);
+                }else {
+                    System.out.println("Lo sentimos, no hay estudiantes para realizar la operacion");
+                    menu(estudiantes);
+                }
                 break;
             case 4:
-                examen(estudiantes);
+                if (estudiantes[0][0] != 0) {
+                    examen(estudiantes);
+                    menu(estudiantes);
+                }else {
+                    System.out.println("Lo sentimos, no hay estudiantes para realizar la operacion");
+                    menu(estudiantes);
+                }
                 break;
             case 5:
-                mostrarTodo(estudiantes);
+                if (estudiantes[0][0] != 0) {
+
+                    mostrarTodo(estudiantes);
+                    menu(estudiantes);
+                }else {
+                    System.out.println("Lo sentimos, no hay estudiantes para realizar la operacion");
+                    menu(estudiantes);
+                }
                 break;
             case 6:
                 System.out.println("Hasta la proxima");
